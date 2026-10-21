@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【展氏新解】布洛酸鹼理論：平衡方向判定與酸度序列</title>
+  <title>【展氏新解】布洛酸鹼理論 (三)：平衡方向判定與酸度序列</title>
   <style>
     :root {
       --bg-board: #142c1f;
@@ -291,11 +291,11 @@
     }
     .chem-eq-hero::-webkit-scrollbar { display: none; }
 
-    /* 正逆反應角色對照小表格 */
+    /* 正逆反應角色對照表格 */
     .role-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 8px;
+      margin: 8px 0;
       font-size: 0.82rem;
       background: rgba(0, 0, 0, 0.22);
       border-radius: 6px;
@@ -310,6 +310,35 @@
     .role-table th {
       background: var(--table-th-bg);
       font-weight: 800;
+    }
+
+    /* 困惑萌生：排版對齊卡片 */
+    .confusion-align-box {
+      margin-top: 6px;
+      padding: 6px 8px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 6px;
+      border-left: 3px solid var(--chalk-red);
+      font-size: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .confusion-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .confusion-title {
+      color: var(--text-main);
+      font-weight: 700;
+      min-width: 158px;
+    }
+    .confusion-vs {
+      color: var(--chalk-yellow);
+      font-weight: 900;
+      letter-spacing: 1px;
     }
 
     .note-pill {
@@ -634,12 +663,12 @@
   <div class="toolbar">
     <div style="display:flex; align-items:center;">
       <span class="brand-tag">展氏新解</span>
-      <span style="font-weight:700;">平衡方向判定與布洛酸酸性序列</span>
+      <span style="font-weight:700;">布洛酸鹼理論 (三)：平衡方向判定與酸度序列</span>
     </div>
     <div class="btn-group">
       <button class="btn btn-primary" onclick="openQuiz()">📝 進入隨堂測驗</button>
       <button class="btn" onclick="toggleTheme()">🎨 切換黑板/紙本模式</button>
-      <button class="btn" onclick="toggleCloze()">✏️ 課堂挖空複習</button>
+      <button class="btn" onclick="toggleCloloze()">✏️ 課堂挖空複習</button>
       <button class="btn" onclick="window.print()">🖨️ 列印 A4 講義</button>
     </div>
   </div>
@@ -650,7 +679,7 @@
     <div class="board-header">
       <div class="main-title-wrap">
         <span class="brand-tag" style="font-size:1.05rem; padding:4px 10px;">展氏新解</span>
-        <h1>判斷平衡方向及布洛酸酸性序列</h1>
+        <h1>布洛酸鹼理論 (三)</h1>
         <span class="badge-pill">直觀直覺破解 · 酸度核心口訣 · 逆推共軛鹼強弱</span>
       </div>
     </div>
@@ -678,7 +707,7 @@
             • <b>看鹼性</b>：直觀強鹼 <span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">OH⁻ &gt; NH₃</span>（順利猜中！）
           </div>
 
-          <!-- 布洛酸、布洛鹼、左側、右側 結構化對照表格 -->
+          <!-- 範例 1 角色對照表格 -->
           <table class="role-table">
             <tr>
               <th style="color:var(--chalk-yellow);">身分＼位置</th>
@@ -705,9 +734,40 @@
           <div class="chem-eq-hero" style="color:var(--chalk-orange);">HCO₃⁻ ＋ NH₃ ⇌ NH₄⁺ ＋ CO₃²⁻</div>
           
           <div style="font-size:0.83rem; margin-top:4px; line-height:1.65;">
-            • <b>直覺陷阱</b>：很多人誤猜向右！<br>
-            • <b>實測方向</b>：向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">左</span><br>
-            • <b>困惑萌生</b>：酸性到底誰大？鹼性到底是 NH₃ 還是 CO₃²⁻ 比較強？
+            • <b>直覺陷阱</b>：很多人誤猜平衡向右！<br>
+            • <b>正確方向</b>：向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">左</span>
+          </div>
+
+          <!-- 範例 2 角色對照表格 -->
+          <table class="role-table">
+            <tr>
+              <th style="color:var(--chalk-yellow);">身分＼位置</th>
+              <th style="color:var(--chalk-cyan);">左側 (正反應)</th>
+              <th style="color:var(--chalk-orange);">右側 (逆反應)</th>
+            </tr>
+            <tr>
+              <td><b>布洛酸</b></td>
+              <td><span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">HCO₃⁻</span></td>
+              <td><span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">NH₄⁺</span></td>
+            </tr>
+            <tr>
+              <td><b>布洛鹼</b></td>
+              <td><span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">NH₃</span></td>
+              <td><span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">CO₃²⁻</span></td>
+            </tr>
+          </table>
+
+          <!-- 困惑萌生：嚴格對齊結構 -->
+          <div class="confusion-align-box">
+            <div style="font-weight:800; color:var(--chalk-red); margin-bottom:2px;">❓ 困惑萌生：</div>
+            <div class="confusion-row">
+              <span class="confusion-title">• 布洛酸的酸性到底誰大？</span>
+              <span class="confusion-vs"><span class="cloze">HCO₃⁻</span> vs <span class="cloze">NH₄⁺</span></span>
+            </div>
+            <div class="confusion-row">
+              <span class="confusion-title">• 布洛鹼的鹼性到底誰大？</span>
+              <span class="confusion-vs"><span class="cloze">NH₃</span> vs <span class="cloze">CO₃²⁻</span></span>
+            </div>
           </div>
         </div>
 
@@ -1080,7 +1140,7 @@
 
     <!-- 頁尾版權與計數器 -->
     <div class="footer">
-      <div>展氏新解 · 布洛酸鹼理論：平衡方向判定與布洛酸酸性序列</div>
+      <div>展氏新解 · 布洛酸鹼理論 (三)：平衡方向判定與布洛酸酸性序列</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px; display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.06); padding:2px 10px; border-radius:12px; border:1px solid var(--card-border);">
         <span>👀 累計點閱：</span>
@@ -1277,7 +1337,7 @@
     (function recordPageView() {
       const counterEl = document.getElementById("pageViews");
       const timestamp = new Date().getTime();
-      const pageKey = "y-chinchan-acid-base-strength-seq-v7";
+      const pageKey = "y-chinchan-acid-base-strength-seq-v9";
       const apiUrl = `https://api.counterapi.dev/v1/zhan-chemistry/${pageKey}/up?t=${timestamp}`;
 
       fetch(apiUrl)
