@@ -2,8 +2,8 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【展氏新解】布洛酸鹼理論 (三)：平衡方向判定與酸度序列</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>【展氏新解】平衡方向判定與酸度序列</title>
   <style>
     :root {
       --bg-board: #142c1f;
@@ -62,16 +62,22 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html, body {
+      width: 100%;
+      overflow-x: hidden; /* 防止手機左右溢出滑動 */
+    }
+
     body {
       background-color: #08100c;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
       color: var(--text-main);
-      padding: 10px;
+      padding: 8px;
       line-height: 1.55;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-wrap: pretty; /* 防止最後一行只有孤字 */
     }
 
     body.theme-paper { background-color: #e2e8f0; }
@@ -83,10 +89,10 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 12px;
-      padding: 10px 16px;
-      background: rgba(15, 23, 42, 0.7);
+      padding: 10px 14px;
+      background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(8px);
       border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -100,21 +106,22 @@
 
     .brand-tag {
       font-weight: 900;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       background: linear-gradient(135deg, #f59e0b, #d97706);
       color: #ffffff;
       padding: 3px 8px;
       border-radius: 5px;
       font-size: 0.85rem;
       margin-right: 6px;
+      white-space: nowrap;
       box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
 
-    .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
 
     .btn {
-      padding: 7px 14px;
-      font-size: 0.86rem;
+      padding: 6px 11px;
+      font-size: 0.82rem;
       border: 1px solid var(--card-border);
       background: var(--card-bg);
       color: var(--text-main);
@@ -124,8 +131,9 @@
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .btn:hover {
@@ -143,52 +151,60 @@
       width: 100%;
       max-width: 1440px;
       background-color: var(--bg-board);
-      border: 10px solid var(--board-frame);
+      border: 8px solid var(--board-frame);
       border-radius: 14px;
       box-shadow: var(--box-shadow);
-      padding: 18px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-bottom: 30px;
+      gap: 14px;
+      margin-bottom: 24px;
       transition: background-color 0.25s, border-color 0.25s;
+    }
+
+    @media (max-width: 600px) {
+      .board-container {
+        border-width: 5px;
+        padding: 8px;
+      }
     }
 
     .board-header {
       text-align: center;
       border-bottom: 2px dashed var(--card-border);
-      padding-bottom: 12px;
+      padding-bottom: 10px;
     }
 
     .main-title-wrap {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .board-header h1 {
-      font-size: 1.65rem;
-      letter-spacing: 2px;
+      font-size: clamp(1.25rem, 4vw, 1.65rem);
+      letter-spacing: 1.5px;
       color: var(--chalk-yellow);
       font-weight: 900;
     }
 
     .badge-pill {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       background: var(--highlight-bg);
       color: var(--chalk-cyan);
-      padding: 3px 10px;
+      padding: 3px 8px;
       border-radius: 20px;
       border: 1px solid var(--chalk-cyan);
       font-weight: 700;
+      text-align: center;
     }
 
     .board-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      gap: 12px;
       align-items: stretch;
     }
 
@@ -204,43 +220,47 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 10px;
-      padding: 14px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+      min-width: 0; /* 防止子項溢出 */
     }
 
     .col-title {
-      font-size: 1.02rem;
+      font-size: 0.98rem;
       font-weight: 800;
       color: var(--chalk-yellow);
       border-bottom: 2px solid var(--chalk-cyan);
-      padding-bottom: 6px;
+      padding-bottom: 5px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
     }
 
     .section-box {
       background: var(--section-box-bg);
       border-left: 3px solid var(--chalk-yellow);
-      padding: 10px;
+      padding: 9px;
       border-radius: 5px;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
+      line-height: 1.55;
     }
 
     .sub-head {
       font-weight: 800;
       color: var(--chalk-cyan);
-      margin-bottom: 5px;
-      font-size: 0.92rem;
+      margin-bottom: 4px;
+      font-size: 0.9rem;
     }
 
     .diagram-wrap {
       width: 100%;
       background: var(--diagram-bg);
       border-radius: 8px;
-      padding: 8px 4px;
+      padding: 6px 4px;
       text-align: center;
       border: 1px solid var(--card-border);
     }
@@ -256,10 +276,10 @@
       background: var(--reaction-bg);
       border: 1px solid var(--card-border);
       border-radius: 8px;
-      padding: 10px;
+      padding: 9px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Noto Sans TC", monospace;
-      font-size: 0.88rem;
-      line-height: 1.6;
+      font-size: 0.85rem;
+      line-height: 1.55;
     }
 
     .chem-eq-row {
@@ -267,7 +287,7 @@
       color: var(--chalk-green);
       white-space: nowrap;
       overflow-x: auto;
-      font-size: clamp(0.78rem, 2.5vw, 0.92rem);
+      font-size: clamp(0.76rem, 2.3vw, 0.9rem);
       padding: 2px 0;
       display: block;
       scrollbar-width: none;
@@ -278,10 +298,10 @@
     .chem-eq-hero {
       font-weight: 900;
       color: var(--chalk-green);
-      font-size: clamp(0.95rem, 2.8vw, 1.08rem);
+      font-size: clamp(0.92rem, 3.2vw, 1.05rem);
       text-align: center;
       padding: 6px 4px;
-      margin: 4px 0 8px 0;
+      margin: 4px 0 6px 0;
       background: rgba(0, 0, 0, 0.25);
       border-radius: 6px;
       border: 1px dashed var(--card-border);
@@ -295,15 +315,15 @@
     .role-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 8px 0;
-      font-size: 0.82rem;
+      margin: 6px 0;
+      font-size: 0.8rem;
       background: rgba(0, 0, 0, 0.22);
       border-radius: 6px;
       overflow: hidden;
       border: 1px solid var(--card-border);
     }
     .role-table th, .role-table td {
-      padding: 5px 8px;
+      padding: 4px 6px;
       text-align: center;
       border: 1px solid var(--card-border);
     }
@@ -327,27 +347,55 @@
     .confusion-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
+      gap: 4px;
       white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
+    .confusion-row::-webkit-scrollbar { display: none; }
     .confusion-title {
       color: var(--text-main);
       font-weight: 700;
-      min-width: 158px;
+      font-size: 0.8rem;
     }
     .confusion-vs {
       color: var(--chalk-yellow);
       font-weight: 900;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
+      font-size: 0.82rem;
+    }
+
+    /* 防少少字不成列：強弱回顧專用緊湊卡片 */
+    .review-flow-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .review-item-card {
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+    .review-item-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4px;
     }
 
     .note-pill {
       display: inline-block;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
       background: var(--highlight-bg);
       color: var(--chalk-yellow);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       margin-top: 4px;
     }
@@ -356,15 +404,15 @@
       background: rgba(253, 224, 71, 0.12);
       border: 1px dashed var(--chalk-yellow);
       border-radius: 6px;
-      padding: 8px 10px;
-      margin-top: 6px;
+      padding: 6px 8px;
+      margin-top: 5px;
     }
 
     .mnemonic-text {
       color: var(--chalk-yellow);
       font-weight: 900;
-      font-size: 0.98rem;
-      letter-spacing: 2px;
+      font-size: 0.95rem;
+      letter-spacing: 1.5px;
       display: block;
       text-align: center;
       margin: 2px 0;
@@ -374,10 +422,10 @@
       background: var(--ext-card-bg);
       border: 2px solid var(--ext-card-border);
       border-radius: 12px;
-      padding: 16px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
       box-shadow: inset 0 2px 8px rgba(0,0,0,0.25);
     }
 
@@ -392,7 +440,7 @@
     }
 
     .extension-title {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 900;
       color: var(--ext-title);
       display: flex;
@@ -401,11 +449,11 @@
     }
 
     .extension-badge {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       background: var(--ext-badge-bg);
       border: 1px solid var(--ext-badge-border);
       color: var(--ext-title);
-      padding: 2px 10px;
+      padding: 2px 8px;
       border-radius: 20px;
       font-weight: 800;
     }
@@ -413,7 +461,7 @@
     .extension-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      gap: 12px;
     }
 
     @media (max-width: 900px) {
@@ -424,15 +472,16 @@
       background: var(--ext-inner-box);
       border: 1px solid var(--card-border);
       border-radius: 8px;
-      padding: 12px;
-      font-size: 0.88rem;
+      padding: 11px;
+      font-size: 0.85rem;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
+      min-width: 0;
     }
 
     .ext-box ul {
-      padding-left: 18px;
+      padding-left: 16px;
       margin: 4px 0;
     }
 
@@ -469,7 +518,7 @@
       z-index: 9999;
       display: none;
       overflow-y: auto;
-      padding: 20px 12px;
+      padding: 16px 8px;
     }
 
     .quiz-modal.active {
@@ -485,11 +534,11 @@
       width: 100%;
       max-width: 860px;
       color: #f8fafc;
-      padding: 20px;
+      padding: 16px;
       margin: auto;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
 
@@ -504,16 +553,17 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid #475569;
-      padding-bottom: 12px;
+      padding-bottom: 10px;
     }
 
     .quiz-stats-bar {
       display: flex;
       justify-content: space-between;
       background: rgba(255,255,255,0.06);
-      padding: 8px 14px;
+      padding: 6px 12px;
       border-radius: 8px;
-      font-size: 0.88rem;
+      font-size: 0.82rem;
+      align-items: center;
     }
 
     body.theme-paper .quiz-stats-bar {
@@ -524,10 +574,10 @@
       background: rgba(255,255,255,0.03);
       border: 1px solid #334155;
       border-radius: 8px;
-      padding: 14px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     body.theme-paper .question-block {
@@ -538,34 +588,35 @@
     .q-title-row {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-weight: 800;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .q-badge {
-      font-size: 0.75rem;
-      padding: 2px 8px;
+      font-size: 0.72rem;
+      padding: 2px 6px;
       border-radius: 4px;
       background: #3b82f6;
       color: #fff;
+      white-space: nowrap;
     }
 
     .option-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     .opt-btn {
       text-align: left;
-      padding: 10px 14px;
+      padding: 8px 12px;
       border-radius: 6px;
       background: rgba(255,255,255,0.05);
       border: 1px solid #475569;
       color: inherit;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       transition: all 0.15s;
     }
 
@@ -606,12 +657,12 @@
     }
 
     .expl-box {
-      margin-top: 6px;
-      padding: 10px;
+      margin-top: 4px;
+      padding: 8px;
       background: rgba(0,0,0,0.3);
-      border-left: 4px solid #f59e0b;
+      border-left: 3px solid #f59e0b;
       border-radius: 4px;
-      font-size: 0.86rem;
+      font-size: 0.82rem;
       display: none;
       line-height: 1.5;
     }
@@ -632,9 +683,9 @@
 
     .footer {
       text-align: center;
-      padding: 16px 0 6px 0;
+      padding: 14px 0 6px 0;
       border-top: 1px dashed var(--card-border);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-sub);
       display: flex;
       flex-direction: column;
@@ -661,15 +712,15 @@
 
   <!-- 控制列 -->
   <div class="toolbar">
-    <div style="display:flex; align-items:center;">
+    <div style="display:flex; align-items:center; flex-wrap:wrap; gap:4px;">
       <span class="brand-tag">展氏新解</span>
-      <span style="font-weight:700;">布洛酸鹼理論 (三)：平衡方向判定與酸度序列</span>
+      <span style="font-weight:700; font-size:0.88rem;">布洛酸鹼理論 (三)</span>
     </div>
     <div class="btn-group">
-      <button class="btn btn-primary" onclick="openQuiz()">📝 進入隨堂測驗</button>
-      <button class="btn" onclick="toggleTheme()">🎨 切換黑板/紙本模式</button>
-      <button class="btn" onclick="toggleCloloze()">✏️ 課堂挖空複習</button>
-      <button class="btn" onclick="window.print()">🖨️ 列印 A4 講義</button>
+      <button class="btn btn-primary" onclick="openQuiz()">📝 隨堂測驗</button>
+      <button class="btn" onclick="toggleTheme()">🎨 黑板/紙本</button>
+      <button class="btn" onclick="toggleCloze()">✏️ 挖空複習</button>
+      <button class="btn" onclick="window.print()">🖨️ 列印 A4</button>
     </div>
   </div>
 
@@ -678,7 +729,7 @@
     <!-- 頂部大標題 -->
     <div class="board-header">
       <div class="main-title-wrap">
-        <span class="brand-tag" style="font-size:1.05rem; padding:4px 10px;">展氏新解</span>
+        <span class="brand-tag" style="font-size:0.95rem; padding:3px 8px;">展氏新解</span>
         <h1>布洛酸鹼理論 (三)</h1>
         <span class="badge-pill">直觀直覺破解 · 酸度核心口訣 · 逆推共軛鹼強弱</span>
       </div>
@@ -702,8 +753,8 @@
           
           <div style="font-size:0.83rem; margin-top:4px; line-height:1.65;">
             • <b>判定方向</b>：向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">右</span><br>
-            • <b>直覺直觀</b>：反應永遠由「<span class="cloze" style="color:var(--chalk-red); font-weight:bold;">危險</span> → <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">安全</span>」<br>
-            • <b>看酸性</b>：NH₄⁺ vs H₂O <span style="color:var(--chalk-orange); font-size:0.8rem;">(看不出來)</span><br>
+            • <b>直覺直觀</b>：反應自發「<span class="cloze" style="color:var(--chalk-red); font-weight:bold;">危險</span> → <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">安全</span>」<br>
+            • <b>看酸性</b>：NH₄⁺ vs H₂O <span style="color:var(--chalk-orange); font-size:0.8rem;">(直覺看不出來)</span><br>
             • <b>看鹼性</b>：直觀強鹼 <span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">OH⁻ &gt; NH₃</span>（順利猜中！）
           </div>
 
@@ -761,17 +812,17 @@
           <div class="confusion-align-box">
             <div style="font-weight:800; color:var(--chalk-red); margin-bottom:2px;">❓ 困惑萌生：</div>
             <div class="confusion-row">
-              <span class="confusion-title">• 布洛酸的酸性到底誰大？</span>
+              <span class="confusion-title">• 布洛酸酸性到底誰大？</span>
               <span class="confusion-vs"><span class="cloze">HCO₃⁻</span> vs <span class="cloze">NH₄⁺</span></span>
             </div>
             <div class="confusion-row">
-              <span class="confusion-title">• 布洛鹼的鹼性到底誰大？</span>
+              <span class="confusion-title">• 布洛鹼鹼性到底誰大？</span>
               <span class="confusion-vs"><span class="cloze">NH₃</span> vs <span class="cloze">CO₃²⁻</span></span>
             </div>
           </div>
         </div>
 
-        <div class="section-box" style="border-left-color: var(--chalk-orange); font-size:0.84rem;">
+        <div class="section-box" style="border-left-color: var(--chalk-orange); font-size:0.83rem;">
           💡 <b>結論引言</b>：靠靈感與生活直覺終究會翻車，我們需要一套無懈可擊的<b>酸度序列標準</b>！
         </div>
       </div>
@@ -785,64 +836,83 @@
 
         <div class="section-box">
           <div class="sub-head">1. 平衡自發驅動力</div>
-          <p style="font-size:0.86rem; margin-bottom:6px;">
-            酸鹼反應本質為質子競爭，化學平衡必然往<b>穩定、低能量、釋出質子能力弱</b>的一方傾斜：
+          <p style="font-size:0.84rem; margin-bottom:5px; text-wrap:pretty;">
+            酸鹼反應本質為質子競爭，平衡必然朝向<b>穩定、低能量、釋質子弱</b>的一側自發傾斜：
           </p>
-          <div class="reaction-box" style="text-align:center; padding:8px;">
-            <div style="font-weight:900; font-size:1.02rem; color:var(--chalk-yellow);">
+          <div class="reaction-box" style="text-align:center; padding:6px 4px;">
+            <div style="font-weight:900; font-size:0.98rem; color:var(--chalk-yellow);">
               A ＋ B ⇌ 產物 ＋ 產物
             </div>
-            <div style="font-weight:900; font-size:1.05rem; color:var(--chalk-green); margin-top:2px;">
+            <div style="font-weight:900; font-size:1.02rem; color:var(--chalk-green); margin-top:2px;">
               <span class="cloze">強酸 ＋ 強鹼 → 弱酸 ＋ 弱鹼</span>
             </div>
           </div>
         </div>
 
-        <!-- 核心思維轉變提醒框：阿瑞尼斯 vs 布洛理論 -->
-        <div class="section-box" style="border-left-color: var(--chalk-red); background: rgba(248, 113, 113, 0.12); padding:9px;">
-          <div style="font-weight:900; color:var(--chalk-red); font-size:0.88rem; margin-bottom:3px;">
+        <!-- 核心思維轉變提醒框：阿瑞尼斯 vs 布洛理論（排版防孤字優化） -->
+        <div class="section-box" style="border-left-color: var(--chalk-red); background: rgba(248, 113, 113, 0.12); padding:8px 9px;">
+          <div style="font-weight:900; color:var(--chalk-red); font-size:0.86rem; margin-bottom:3px;">
             ⚠️ 展氏警惕：切勿陷入舊思維！
           </div>
-          <p style="font-size:0.82rem; line-height:1.55;">
-            這裡所說的「強酸／弱酸」，<b>絕不是</b>阿瑞尼斯理論中「完全解離 (100%) vs 部分解離」的<span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">絕對強度</span>！<br>
-            而是布洛理論中兩側質子競爭的<span class="cloze" style="color:var(--chalk-green); font-weight:bold;">「相對」強度大小</span>：<br>
-            • <b>強酸</b>：指在此反應體系中<b><span class="cloze">相對強</span></b>（釋出質子傾向較大）<br>
-            • <b>弱酸</b>：指在此反應體系中<b><span class="cloze">相對弱</span></b>（釋出質子傾向較小）
+          <p style="font-size:0.81rem; line-height:1.55; text-wrap:pretty;">
+            這裡所謂「強酸／弱酸」，<b>絕非</b>阿瑞尼斯理論中解離度是否達 100% 的<span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">絕對強度</span>，而是布洛質子轉移的<span class="cloze" style="color:var(--chalk-green); font-weight:bold;">「相對」強度大小</span>：
           </p>
+          <div style="margin-top:5px; display:flex; flex-direction:column; gap:3px; font-size:0.8rem; background:rgba(0,0,0,0.2); padding:5px 7px; border-radius:4px;">
+            <div>• <b>強酸</b>：在此體系中<b><span class="cloze">相對強</span></b>（給出質子傾向較大）</div>
+            <div>• <b>弱酸</b>：在此體系中<b><span class="cloze">相對弱</span></b>（給出質子傾向較小）</div>
+          </div>
         </div>
 
         <!-- 向量流向示意圖 -->
         <div class="diagram-wrap">
-          <svg viewBox="0 0 280 85">
-            <rect x="15" y="15" width="80" height="32" rx="6" fill="rgba(248, 113, 113, 0.2)" stroke="#f87171" stroke-width="1.5"/>
-            <text x="55" y="35" fill="#f87171" font-size="11" font-weight="bold" text-anchor="middle">相對強 (酸/鹼)</text>
+          <svg viewBox="0 0 280 82">
+            <rect x="12" y="14" width="84" height="30" rx="5" fill="rgba(248, 113, 113, 0.2)" stroke="#f87171" stroke-width="1.5"/>
+            <text x="54" y="33" fill="#f87171" font-size="11" font-weight="bold" text-anchor="middle">相對強 (酸/鹼)</text>
 
-            <path d="M 105 31 L 165 31" stroke="#fde047" stroke-width="2.5"/>
-            <polygon points="168,31 160,26 160,36" fill="#fde047"/>
-            <text x="135" y="24" fill="#fde047" font-size="9.5" font-weight="bold" text-anchor="middle">自發驅動</text>
+            <path d="M 104 29 L 164 29" stroke="#fde047" stroke-width="2.5"/>
+            <polygon points="167,29 159,24 159,34" fill="#fde047"/>
+            <text x="134" y="22" fill="#fde047" font-size="9" font-weight="bold" text-anchor="middle">自發驅動</text>
 
-            <rect x="175" y="15" width="80" height="32" rx="6" fill="rgba(134, 239, 172, 0.2)" stroke="#86efac" stroke-width="1.5"/>
-            <text x="215" y="35" fill="#86efac" font-size="11" font-weight="bold" text-anchor="middle">相對弱 (酸/鹼)</text>
+            <rect x="174" y="14" width="84" height="30" rx="5" fill="rgba(134, 239, 172, 0.2)" stroke="#86efac" stroke-width="1.5"/>
+            <text x="216" y="33" fill="#86efac" font-size="11" font-weight="bold" text-anchor="middle">相對弱 (酸/鹼)</text>
 
-            <text x="140" y="68" fill="var(--chalk-cyan)" font-size="9" text-anchor="middle">★ 相對強者將質子強勢推給弱者，系統趨向安定</text>
+            <text x="140" y="65" fill="var(--chalk-cyan)" font-size="8.8" text-anchor="middle">★ 相對強者主動推質子給相對弱者，系統趨向安定</text>
           </svg>
         </div>
 
+        <!-- 兩範例相對強弱回顧（改用並排卡片，徹底消除孤字折行） -->
         <div class="reaction-box">
-          <div class="sub-head" style="color:var(--chalk-cyan); margin-bottom:2px;">兩範例相對強弱回顧：</div>
-          <div style="font-size:0.83rem; line-height:1.65;">
-            • 在 1 中：酸性 <span class="cloze">NH₄⁺ &gt; H₂O</span>，鹼性 <span class="cloze">OH⁻ &gt; NH₃</span><br>
-            &nbsp;&nbsp;👉 故平衡向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">右</span><br>
-            • 在 2 中：酸性 <span class="cloze">HCO₃⁻ &lt; NH₄⁺</span>，鹼性 <span class="cloze">NH₃ &lt; CO₃²⁻</span><br>
-            &nbsp;&nbsp;👉 故平衡向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">左</span>
+          <div class="sub-head" style="color:var(--chalk-cyan); margin-bottom:4px;">兩範例相對強弱回顧：</div>
+          <div class="review-flow-box">
+            <div class="review-item-card">
+              <div class="review-item-row">
+                <b>【範例 1】</b>
+                <span>酸性：<span class="cloze">NH₄⁺ &gt; H₂O</span></span>
+                <span>鹼性：<span class="cloze">OH⁻ &gt; NH₃</span></span>
+              </div>
+              <div style="margin-top:2px; color:var(--chalk-green); font-weight:bold;">
+                👉 平衡向 <span class="cloze" style="font-size:0.92rem;">右</span> 移動
+              </div>
+            </div>
+
+            <div class="review-item-card">
+              <div class="review-item-row">
+                <b>【範例 2】</b>
+                <span>酸性：<span class="cloze">HCO₃⁻ &lt; NH₄⁺</span></span>
+                <span>鹼性：<span class="cloze">NH₃ &lt; CO₃²⁻</span></span>
+              </div>
+              <div style="margin-top:2px; color:var(--chalk-green); font-weight:bold;">
+                👉 平衡向 <span class="cloze" style="font-size:0.92rem;">左</span> 移動
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="reaction-box" style="text-align:center; background:rgba(248, 113, 113, 0.12); border-color:var(--chalk-red);">
-          <div style="font-size:0.92rem; font-weight:900; color:var(--chalk-red);">
+        <div class="reaction-box" style="text-align:center; background:rgba(248, 113, 113, 0.12); border-color:var(--chalk-red); padding:7px;">
+          <div style="font-size:0.88rem; font-weight:900; color:var(--chalk-red);">
             ★ 展氏靈魂拷問：
           </div>
-          <div style="font-size:0.85rem; margin-top:3px; color:var(--chalk-yellow); font-weight:bold;">
+          <div style="font-size:0.83rem; margin-top:2px; color:var(--chalk-yellow); font-weight:bold;">
             「不能每次都憑感覺、靠猜想！」
           </div>
         </div>
@@ -858,11 +928,11 @@
         <!-- 強酸段 -->
         <div class="section-box" style="border-left-color: var(--chalk-red);">
           <div class="sub-head" style="color:var(--chalk-red);">第 1 梯隊：超強酸 (水合氫離子之前)</div>
-          <div class="chem-eq-row" style="color:var(--chalk-yellow); font-size:0.81rem;">
+          <div class="chem-eq-row" style="color:var(--chalk-yellow); font-size:0.8rem;">
             HClO₄ &gt; HI &gt; HBr &gt; HCl &gt; HNO₃ &gt; H₂SO₄ &gt; H₃O⁺
           </div>
           <div class="mnemonic-box">
-            <span style="font-size:0.78rem; opacity:0.8;">口訣記憶法：</span>
+            <span style="font-size:0.75rem; opacity:0.8;">口訣記憶法：</span>
             <span class="mnemonic-text"><span class="cloze">過 碘 溴 氯 硝 硫 氫</span></span>
           </div>
         </div>
@@ -901,11 +971,11 @@
         </div>
 
         <!-- 口訣與中文名稱對照補充說明 -->
-        <div class="section-box" style="border-left-color: var(--chalk-cyan); background: rgba(0,0,0,0.28); margin-top:4px; font-size:0.82rem; padding:8px 10px;">
-          <div style="font-weight:800; color:var(--chalk-cyan); margin-bottom:4px; font-size:0.86rem;">
+        <div class="section-box" style="border-left-color: var(--chalk-cyan); background: rgba(0,0,0,0.28); margin-top:3px; font-size:0.8rem; padding:7px 9px;">
+          <div style="font-weight:800; color:var(--chalk-cyan); margin-bottom:4px; font-size:0.84rem;">
             📖 口訣與中文名稱對照清單：
           </div>
-          <div style="display:flex; flex-direction:column; gap:6px; line-height:1.5;">
+          <div style="display:flex; flex-direction:column; gap:5px; line-height:1.45;">
             <div>
               <b style="color:var(--chalk-yellow);">過 碘 溴 氯 硝 硫 氫：</b><br>
               過氯酸、氫碘酸、氫溴酸、<span style="color:var(--chalk-green); font-weight:bold;">氫氯酸(鹽酸)</span>、硝酸、硫酸、鋞離子(水合氫離子)
@@ -938,16 +1008,16 @@
           <div class="sub-head" style="color:var(--chalk-orange); margin-bottom:2px;">
             【實戰演練】
           </div>
-          <div style="font-size:0.88rem; font-weight:800; color:var(--text-main); margin-top:4px; line-height:1.5;">
+          <div style="font-size:0.86rem; font-weight:800; color:var(--text-main); margin-top:3px; line-height:1.5;">
             題目：<br>
             試比較 <span style="color:var(--chalk-yellow);">CH₃COO⁻</span> 與 <span style="color:var(--chalk-cyan);">HCO₃⁻</span> 之鹼性大小？
           </div>
         </div>
 
         <!-- 2. 再放解題金鑰步驟 -->
-        <div class="section-box" style="border-left-color: var(--chalk-green); font-size:0.84rem;">
-          <div class="sub-head" style="color:var(--chalk-green); margin-bottom:4px;">🔑 解題步驟金鑰：</div>
-          <ol style="padding-left:18px; line-height:1.65;">
+        <div class="section-box" style="border-left-color: var(--chalk-green); font-size:0.83rem;">
+          <div class="sub-head" style="color:var(--chalk-green); margin-bottom:3px;">🔑 解題步驟金鑰：</div>
+          <ol style="padding-left:16px; line-height:1.6;">
             <li><b>第一步</b>：先找出布洛鹼的<span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">共軛酸</span>（長相一樣，但多 1 個 H⁺）。</li>
             <li><b>第二步</b>：共軛酸酸性 <span class="cloze" style="color:var(--chalk-red); font-weight:bold;">愈強（↓）</span>，則其布洛鹼鹼性 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">愈弱（↑）</span>！</li>
           </ol>
@@ -958,20 +1028,20 @@
           <div class="sub-head" style="color:var(--chalk-cyan); margin-bottom:3px;">
             【步驟詳解與破題】：
           </div>
-          <div style="font-size:0.83rem; line-height:1.7;">
+          <div style="font-size:0.82rem; line-height:1.65;">
             ① <b>從布洛鹼的長相去復原其共軛酸的長相</b>（長得一樣，補 1 個 H⁺）：<br>
             • CH₃COO⁻ 補 H⁺ 👉 長相復原為 <span class="cloze" style="font-weight:bold; color:var(--chalk-yellow);">CH₃COOH</span><br>
             • HCO₃⁻ 補 H⁺ 👉 長相復原為 <span class="cloze" style="font-weight:bold; color:var(--chalk-cyan);">H₂CO₃</span><br>
             ② <b>共軛酸酸性強弱比較（查酸度序列）</b>：<br>
             • 口訣「醋 &gt; 碳」，故酸性：<span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">CH₃COOH &gt; H₂CO₃</span><br>
             ③ <b>鹼性判定（鏡像反轉）</b>：<br>
-            • 結論：鹼性 <span class="cloze" style="color:var(--chalk-green); font-weight:bold; font-size:0.95rem;">CH₃COO⁻ &lt; HCO₃⁻</span>（小 &lt; 大）
+            • 結論：鹼性 <span class="cloze" style="color:var(--chalk-green); font-weight:bold; font-size:0.92rem;">CH₃COO⁻ &lt; HCO₃⁻</span>（小 &lt; 大）
           </div>
         </div>
 
         <div class="reaction-box" style="border-left: 3px solid var(--chalk-cyan);">
           <div class="sub-head" style="color:var(--chalk-cyan); margin-bottom:2px;">深層化學原理（長相與結合力）：</div>
-          <div style="font-size:0.82rem; line-height:1.55;">
+          <div style="font-size:0.81rem; line-height:1.5;">
             • <span style="color:var(--chalk-yellow);">CH₃COO⁻ ＋ H⁺ ⇋ CH₃COOH</span>（強結合生成弱酸，鹼性強）<br>
             • <span style="color:var(--chalk-cyan);">Cl⁻ ＋ H⁺ ⇋ HCl</span>（不結合生成強酸，Cl⁻ 搶 H⁺ 意願極低，鹼性特弱）
           </div>
@@ -996,13 +1066,13 @@
       <div class="extension-grid">
         <!-- 區塊 A：Ka 與 Kb 互補性的熱力學證明 -->
         <div class="ext-box">
-          <div style="font-weight:800; color:var(--chalk-cyan); font-size:0.95rem;">
+          <div style="font-weight:800; color:var(--chalk-cyan); font-size:0.92rem;">
             📌 A. 為什麼「酸越強，其共軛鹼就越弱」？熱力學數學證明
           </div>
-          <p style="font-size:0.85rem; color:var(--text-sub);">
+          <p style="font-size:0.83rem; color:var(--text-sub); text-wrap:pretty;">
             口訣背後的基石來自水溶液中多重平衡的常數相乘關係。設單質子弱酸 HA 及其共軛鹼 A⁻：
           </p>
-          <ul style="font-size:0.84rem; line-height:1.65;">
+          <ul style="font-size:0.82rem; line-height:1.6;">
             <li>酸解離反應：HA + H₂O ⇌ A⁻ + H₃O⁺ ，平衡常數為 <i>K</i><sub>a</sub> = [A⁻][H₃O⁺] / [HA]</li>
             <li>共軛鹼水解：A⁻ + H₂O ⇌ HA + OH⁻ ，平衡常數為 <i>K</i><sub>b</sub> = [HA][OH⁻] / [A⁻]</li>
             <li><b>相乘合體</b>：<i>K</i><sub>a</sub> × <i>K</i><sub>b</sub> = [H₃O⁺][OH⁻] = <b><i>K</i><sub>w</sub> = 1.0 × 10⁻¹⁴</b> (25°C)</li>
@@ -1014,14 +1084,14 @@
 
         <!-- 區塊 B：酸性序列全景圖表（含 Ka 與 Kb 對照） -->
         <div class="ext-box">
-          <div style="font-weight:800; color:var(--chalk-orange); font-size:0.95rem;">
+          <div style="font-weight:800; color:var(--chalk-orange); font-size:0.92rem;">
             📌 B. 口訣對應之定量解離常數表 (25°C)
           </div>
-          <p style="font-size:0.85rem; color:var(--text-sub);">
+          <p style="font-size:0.83rem; color:var(--text-sub);">
             將口訣化為精準數值，體會跨越 20 個數量級的質子結合力躍遷：
           </p>
 
-          <table style="width:100%; border-collapse:collapse; font-size:0.82rem; margin-top:4px;">
+          <table style="width:100%; border-collapse:collapse; font-size:0.8rem; margin-top:4px;">
             <tr style="border-bottom:1px solid var(--card-border); color:var(--chalk-cyan);">
               <th style="padding:4px; text-align:left;">布洛酸 (HA)</th>
               <th style="padding:4px; text-align:center;"><i>K</i><sub>a</sub> (25°C)</th>
@@ -1070,11 +1140,11 @@
 
       <!-- 區塊 C：蹺蹺板鏡像反轉圖解 -->
       <div class="ext-box" style="margin-top:2px;">
-        <div style="font-weight:800; color:var(--ext-title); font-size:0.95rem;">
+        <div style="font-weight:800; color:var(--ext-title); font-size:0.92rem;">
           📊 C. 【酸鹼強弱天秤互補圖解】：共軛酸鹼對的鏡像反向關係
         </div>
-        <div style="background:var(--section-box-bg); padding:10px; border-radius:6px; margin-top:4px;">
-          <svg viewBox="0 0 680 140" style="max-height:130px;">
+        <div style="background:var(--section-box-bg); padding:8px; border-radius:6px; margin-top:4px;">
+          <svg viewBox="0 0 680 140" style="max-height:120px;">
             <!-- 酸性箭頭：向右遞減 -->
             <path d="M 50 40 L 630 40" stroke="#fde047" stroke-width="4"/>
             <polygon points="630,40 615,33 615,47" fill="#fde047"/>
@@ -1106,31 +1176,31 @@
 
       <!-- 區塊 D：實戰通關四步驟導引手冊 -->
       <div class="ext-box" style="margin-top:2px;">
-        <div style="font-weight:800; color:var(--chalk-green); font-size:0.95rem;">
+        <div style="font-weight:800; color:var(--chalk-green); font-size:0.92rem;">
           🎯 D. 考場遇到未知酸鹼反應的「秒殺四部曲」
         </div>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:10px; margin-top:4px;">
-          <div style="background:var(--section-box-bg); padding:10px; border-radius:6px; border:1px solid var(--card-border);">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:8px; margin-top:4px;">
+          <div style="background:var(--section-box-bg); padding:8px; border-radius:6px; border:1px solid var(--card-border);">
             <b style="color:var(--chalk-yellow);">Step 1. 抓出雙方布洛酸</b><br>
-            <span style="font-size:0.83rem; color:var(--text-sub);">
+            <span style="font-size:0.81rem; color:var(--text-sub);">
               在箭頭兩邊分別找出有質子並準備丟出質子的物種（反應物的酸 vs 生成物的酸）。
             </span>
           </div>
-          <div style="background:var(--section-box-bg); padding:10px; border-radius:6px; border:1px solid var(--card-border);">
+          <div style="background:var(--section-box-bg); padding:8px; border-radius:6px; border:1px solid var(--card-border);">
             <b style="color:var(--chalk-cyan);">Step 2. 調用酸度序列口訣</b><br>
-            <span style="font-size:0.83rem; color:var(--text-sub);">
+            <span style="font-size:0.81rem; color:var(--text-sub);">
               心中默念：「過碘溴氯硝硫氫、草亞硫硫氫磷酸、氟亞硝醋碳氫硫、銨氫氰碳氫硫氫」。
             </span>
           </div>
-          <div style="background:var(--section-box-bg); padding:10px; border-radius:6px; border:1px solid var(--card-border);">
+          <div style="background:var(--section-box-bg); padding:8px; border-radius:6px; border:1px solid var(--card-border);">
             <b style="color:var(--chalk-orange);">Step 3. 判定誰是相對強酸</b><br>
-            <span style="font-size:0.83rem; color:var(--text-sub);">
+            <span style="font-size:0.81rem; color:var(--text-sub);">
               序列中位置排在越前面的酸性相對較強，具有更主動的質子推斥力。
             </span>
           </div>
-          <div style="background:var(--section-box-bg); padding:10px; border-radius:6px; border:1px solid var(--card-border);">
+          <div style="background:var(--section-box-bg); padding:8px; border-radius:6px; border:1px solid var(--card-border);">
             <b style="color:var(--chalk-green);">Step 4. 平衡朝相對弱方移動</b><br>
-            <span style="font-size:0.83rem; color:var(--text-sub);">
+            <span style="font-size:0.81rem; color:var(--text-sub);">
               相對強酸在左邊則向右走；相對強酸在右邊則向左走（強趨向生成弱）！
             </span>
           </div>
@@ -1157,7 +1227,7 @@
       <div class="quiz-header">
         <div style="display:flex; align-items:center; gap:8px;">
           <span class="brand-tag">展氏新解</span>
-          <h2 style="font-size:1.2rem; font-weight:900;">隨堂即時檢測系統</h2>
+          <h2 style="font-size:1.15rem; font-weight:900;">隨堂即時檢測系統</h2>
         </div>
         <button class="btn" style="background:#dc2626; color:#fff; border:none;" onclick="closeQuiz()">✕ 關閉返回講義</button>
       </div>
@@ -1168,7 +1238,7 @@
         <button class="btn" style="padding:2px 8px; font-size:0.75rem;" onclick="resetQuiz()">🔄 全部重置</button>
       </div>
 
-      <div id="quizList" style="display:flex; flex-direction:column; gap:14px;"></div>
+      <div id="quizList" style="display:flex; flex-direction:column; gap:12px;"></div>
     </div>
   </div>
 
@@ -1337,7 +1407,7 @@
     (function recordPageView() {
       const counterEl = document.getElementById("pageViews");
       const timestamp = new Date().getTime();
-      const pageKey = "y-chinchan-acid-base-strength-seq-v9";
+      const pageKey = "y-chinchan-acid-base-strength-seq-v10";
       const apiUrl = `https://api.counterapi.dev/v1/zhan-chemistry/${pageKey}/up?t=${timestamp}`;
 
       fetch(apiUrl)
