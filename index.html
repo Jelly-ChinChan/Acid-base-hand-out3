@@ -274,6 +274,44 @@
     }
     .chem-eq-row::-webkit-scrollbar { display: none; }
 
+    /* 放大置中反應式專用 */
+    .chem-eq-hero {
+      font-weight: 900;
+      color: var(--chalk-green);
+      font-size: clamp(0.95rem, 2.8vw, 1.08rem);
+      text-align: center;
+      padding: 6px 4px;
+      margin: 4px 0 8px 0;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 6px;
+      border: 1px dashed var(--card-border);
+      white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .chem-eq-hero::-webkit-scrollbar { display: none; }
+
+    /* 正逆反應角色對照小表格 */
+    .role-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 0.82rem;
+      background: rgba(0, 0, 0, 0.22);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+    .role-table th, .role-table td {
+      padding: 5px 8px;
+      text-align: center;
+      border: 1px solid var(--card-border);
+    }
+    .role-table th {
+      background: var(--table-th-bg);
+      font-weight: 800;
+    }
+
     .note-pill {
       display: inline-block;
       padding: 2px 8px;
@@ -630,25 +668,45 @@
         <!-- 範例 1：直覺猜對 -->
         <div class="reaction-box">
           <div class="sub-head" style="color:var(--chalk-yellow); margin-bottom:2px;">【範例 1】直覺顯而易見型</div>
-          <div class="chem-eq-row">NH₄⁺ + OH⁻ ⇌ H₂O + NH₃</div>
-          <div style="font-size:0.83rem; margin-top:4px; line-height:1.6;">
+          <!-- 反應式變大置中 -->
+          <div class="chem-eq-hero">NH₄⁺ ＋ OH⁻ ⇌ H₂O ＋ NH₃</div>
+          
+          <div style="font-size:0.83rem; margin-top:4px; line-height:1.65;">
             • <b>判定方向</b>：向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">右</span><br>
-            • <b>直覺直觀</b>：反應永遠由「<span class="cloze">完全 → 不全</span>」<br>
-            • <b>看鹼性</b>：直觀強鹼 <span class="cloze">OH⁻ &gt; NH₃</span>（順利猜中！）<br>
-            • <b>布洛酸</b>：<span class="cloze">NH₄⁺</span>（正）、<span class="cloze">H₂O</span>（逆）<br>
-            • <b>布洛鹼</b>：<span class="cloze">OH⁻</span>（正）、<span class="cloze">NH₃</span>（逆）
+            • <b>直覺直觀</b>：反應永遠由「<span class="cloze" style="color:var(--chalk-red); font-weight:bold;">危險</span> → <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">安全</span>」<br>
+            • <b>看酸性</b>：NH₄⁺ vs H₂O <span style="color:var(--chalk-orange); font-size:0.8rem;">(看不出來)</span><br>
+            • <b>看鹼性</b>：直觀強鹼 <span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">OH⁻ &gt; NH₃</span>（順利猜中！）
           </div>
+
+          <!-- 布洛酸、布洛鹼、左側、右側 結構化對照表格 -->
+          <table class="role-table">
+            <tr>
+              <th style="color:var(--chalk-yellow);">身分＼位置</th>
+              <th style="color:var(--chalk-cyan);">左側 (正反應)</th>
+              <th style="color:var(--chalk-orange);">右側 (逆反應)</th>
+            </tr>
+            <tr>
+              <td><b>布洛酸</b></td>
+              <td><span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">NH₄⁺</span></td>
+              <td><span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">H₂O</span></td>
+            </tr>
+            <tr>
+              <td><b>布洛鹼</b></td>
+              <td><span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">OH⁻</span></td>
+              <td><span class="cloze" style="color:var(--chalk-cyan); font-weight:bold;">NH₃</span></td>
+            </tr>
+          </table>
         </div>
 
         <!-- 範例 2：直覺翻車 -->
         <div class="reaction-box" style="border-left: 3px solid var(--chalk-red);">
           <div class="sub-head" style="color:var(--chalk-red); margin-bottom:2px;">【範例 2】直覺容易猜錯型 ⚠️</div>
-          <div class="chem-eq-row">HCO₃⁻ + NH₃ ⇌ NH₄⁺ + CO₃²⁻</div>
-          <div style="font-size:0.83rem; margin-top:4px; line-height:1.6;">
+          <!-- 反應式變大置中 -->
+          <div class="chem-eq-hero" style="color:var(--chalk-orange);">HCO₃⁻ ＋ NH₃ ⇌ NH₄⁺ ＋ CO₃²⁻</div>
+          
+          <div style="font-size:0.83rem; margin-top:4px; line-height:1.65;">
             • <b>直覺陷阱</b>：很多人誤猜向右！<br>
             • <b>實測方向</b>：向 <span class="cloze" style="color:var(--chalk-green); font-weight:bold;">左</span><br>
-            • <b>共軛酸鹼對</b>：<br>
-              👉 <span class="cloze">HCO₃⁻ / CO₃²⁻</span> 及 <span class="cloze">NH₄⁺ / NH₃</span><br>
             • <b>困惑萌生</b>：酸性到底誰大？鹼性到底是 NH₃ 還是 CO₃²⁻ 比較強？
           </div>
         </div>
@@ -730,7 +788,7 @@
         </div>
       </div>
 
-      <!-- 第 3 欄：布洛酸酸性序列與經典口訣（含名稱對照補充） -->
+      <!-- 第 3 欄：布洛酸酸性序列與經典口訣 -->
       <div class="col-card">
         <div class="col-title">
           <span>三、布洛酸酸性序列</span>
@@ -790,7 +848,7 @@
           <div style="display:flex; flex-direction:column; gap:6px; line-height:1.5;">
             <div>
               <b style="color:var(--chalk-yellow);">過 碘 溴 氯 硝 硫 氫：</b><br>
-              過氯酸、氫碘酸、氫溴酸、氫氯酸(鹽酸)、硝酸、硫酸、鋞離子(水合氫離子)
+              過氯酸、氫碘酸、氫溴酸、<span style="color:var(--chalk-green); font-weight:bold;">氫氯酸(鹽酸)</span>、硝酸、硫酸、鋞離子(水合氫離子)
             </div>
             <div>
               <b style="color:var(--chalk-green);">草 亞硫 硫氫 磷酸：</b><br>
@@ -1011,7 +1069,7 @@
             </span>
           </div>
           <div style="background:var(--section-box-bg); padding:10px; border-radius:6px; border:1px solid var(--card-border);">
-            <b style="color:var(--chalk-green);">Step 4. 平平衡朝相對弱方移動</b><br>
+            <b style="color:var(--chalk-green);">Step 4. 平衡朝相對弱方移動</b><br>
             <span style="font-size:0.83rem; color:var(--text-sub);">
               相對強酸在左邊則向右走；相對強酸在右邊則向左走（強趨向生成弱）！
             </span>
@@ -1219,7 +1277,7 @@
     (function recordPageView() {
       const counterEl = document.getElementById("pageViews");
       const timestamp = new Date().getTime();
-      const pageKey = "y-chinchan-acid-base-strength-seq-v6";
+      const pageKey = "y-chinchan-acid-base-strength-seq-v7";
       const apiUrl = `https://api.counterapi.dev/v1/zhan-chemistry/${pageKey}/up?t=${timestamp}`;
 
       fetch(apiUrl)
