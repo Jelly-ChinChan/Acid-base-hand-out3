@@ -420,41 +420,47 @@
       font-size: 0.82rem;
     }
 
-    /* 嚴格對齊專用：Grid 結構雙欄卡片 */
+    /* 兩範例強弱回顧專屬：雙行平行對齊排版 */
     .review-grid-box {
       display: flex;
       flex-direction: column;
       gap: 8px;
       margin-top: 6px;
     }
-    .review-card-aligned {
+    .review-dual-card {
       background: rgba(0, 0, 0, 0.22);
       border: 1px solid var(--card-border);
       border-radius: 6px;
-      padding: 7px 9px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      row-gap: 5px;
-      column-gap: 8px;
-      align-items: center;
-      font-size: 0.81rem;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.82rem;
     }
-    .review-card-aligned .card-title {
+    .review-dual-header {
       font-weight: 800;
       color: var(--chalk-yellow);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+      padding-bottom: 3px;
     }
-    .review-card-aligned .card-acid {
-      text-align: right;
+    .review-dual-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
       white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
-    .review-card-aligned .card-base {
-      white-space: nowrap;
+    .review-dual-row::-webkit-scrollbar { display: none; }
+    .review-cond {
+      color: var(--text-main);
+      font-weight: 600;
     }
-    .review-card-aligned .card-direction {
-      text-align: right;
+    .review-dir {
       color: var(--chalk-green);
       font-weight: 800;
-      white-space: nowrap;
+      text-align: right;
     }
 
     .note-pill {
@@ -948,25 +954,35 @@
           </svg>
         </div>
 
-        <!-- 兩範例相對強弱回顧（CSS Grid 絕對雙欄對齊） -->
+        <!-- 兩範例相對強弱回顧（改為指定雙行平行結構：酸鹼各自標註平衡方向並嚴格對齊） -->
         <div class="reaction-box">
           <div class="sub-head" style="color:var(--chalk-cyan); margin-bottom:4px;">兩範例相對強弱回顧：</div>
           <div class="review-grid-box">
             
-            <!-- 範例 1 對齊卡片 -->
-            <div class="review-card-aligned">
-              <div class="card-title">【範例 1】</div>
-              <div class="card-acid">酸性：<span class="cloze">NH₄⁺ &gt; H₂O</span></div>
-              <div class="card-base">鹼性：<span class="cloze">OH⁻ &gt; NH₃</span></div>
-              <div class="card-direction">👉 平衡向 <span class="cloze" style="font-size:0.92rem;">右</span> 移動</div>
+            <!-- 範例 1 雙行平行卡片 -->
+            <div class="review-dual-card">
+              <div class="review-dual-header">【範例 1】</div>
+              <div class="review-dual-row">
+                <span class="review-cond">酸性：<span class="cloze">NH₄⁺ &gt; H₂O</span></span>
+                <span class="review-dir">👉 平衡向 <span class="cloze" style="font-size:0.92rem;">右</span> 移動</span>
+              </div>
+              <div class="review-dual-row">
+                <span class="review-cond">鹼性：<span class="cloze">OH⁻ &gt; NH₃</span></span>
+                <span class="review-dir">👉 平衡向 <span class="cloze" style="font-size:0.92rem;">右</span> 移動</span>
+              </div>
             </div>
 
-            <!-- 範例 2 對齊卡片 -->
-            <div class="review-card-aligned">
-              <div class="card-title">【範例 2】</div>
-              <div class="card-acid">酸性：<span class="cloze">HCO₃⁻ &lt; NH₄⁺</span></div>
-              <div class="card-base">鹼性：<span class="cloze">NH₃ &lt; CO₃²⁻</span></div>
-              <div class="card-direction">👉 平衡向 <span class="cloze" style="font-size:0.92rem;">左</span> 移動</div>
+            <!-- 範例 2 雙行平行卡片 -->
+            <div class="review-dual-card">
+              <div class="review-dual-header">【範例 2】</div>
+              <div class="review-dual-row">
+                <span class="review-cond">酸性：<span class="cloze">HCO₃⁻ &lt; NH₄⁺</span></span>
+                <span class="review-dir">👉 平衡向 <span class="cloze" style="font-size:0.92rem;">左</span> 移動</span>
+              </div>
+              <div class="review-dual-row">
+                <span class="review-cond">鹼性：<span class="cloze">NH₃ &lt; CO₃²⁻</span></span>
+                <span class="review-dir">👉 平衡向 <span class="cloze" style="font-size:0.92rem;">左</span> 移動</span>
+              </div>
             </div>
 
           </div>
@@ -989,7 +1005,7 @@
           <span style="font-size:0.75rem; opacity:0.8;">核心必背記憶棒</span>
         </div>
 
-        <!-- 強酸段 -->
+        <!-- 第 1 梯隊：超強酸 (水合氫離子之前) -->
         <div class="section-box" style="border-left-color: var(--chalk-red);">
           <div class="sub-head" style="color:var(--chalk-red);">第 1 梯隊：超強酸 (水合氫離子之前)</div>
           <div class="chem-eq-row" style="color:var(--chalk-yellow); font-size:0.8rem;">
@@ -997,13 +1013,13 @@
           </div>
           <div class="mnemonic-box">
             <span style="font-size:0.75rem; opacity:0.8;">口訣記憶法：</span>
-            <span class="mnemonic-text"><span class="cloze">過 碘 溴 氯 硝 硫 氫</span></span>
+            <span class="mnemonic-text"><span class="cloze">過 碘 溴 氯 硝 硫 鋞</span></span>
           </div>
         </div>
 
-        <!-- 中強弱酸段 -->
-        <div class="section-box" style="border-left-color: var(--chalk-yellow);">
-          <div class="sub-head" style="color:var(--chalk-yellow);">第 2 梯隊：中強酸與常見弱酸</div>
+        <!-- 第 2 梯隊：中強酸與常見弱酸 (橘色) -->
+        <div class="section-box" style="border-left-color: var(--chalk-orange);">
+          <div class="sub-head" style="color:var(--chalk-orange);">第 2 梯隊：中強酸與常見弱酸</div>
           <div class="chem-eq-row" style="color:var(--chalk-green); font-size:0.8rem;">
             H₂C₂O₄ &gt; H₂SO₃ &gt; HSO₄⁻ &gt; H₃PO₄
           </div>
@@ -1019,9 +1035,9 @@
           </div>
         </div>
 
-        <!-- 極弱酸段 -->
-        <div class="section-box" style="border-left-color: var(--chalk-cyan);">
-          <div class="sub-head" style="color:var(--chalk-cyan);">第 3 梯隊：極弱酸與酸式根</div>
+        <!-- 第 3 梯隊：極弱酸與酸式根 (紫色) -->
+        <div class="section-box" style="border-left-color: var(--ext-title);">
+          <div class="sub-head" style="color:var(--ext-title);">第 3 梯隊：極弱酸與酸式根</div>
           <div class="chem-eq-row" style="color:var(--chalk-orange); font-size:0.8rem;">
             NH₄⁺ &gt; HCN ≫ HCO₃⁻ &gt; HS⁻
           </div>
@@ -1041,8 +1057,8 @@
           </div>
           <div style="display:flex; flex-direction:column; gap:5px; line-height:1.45;">
             <div>
-              <b style="color:var(--chalk-yellow);">過 碘 溴 氯 硝 硫 氫：</b><br>
-              過氯酸、氫碘酸、氫溴酸、<span style="color:var(--chalk-green); font-weight:bold;">氫氯酸(鹽酸)</span>、硝酸、硫酸、鋞離子(水合氫離子)
+              <b style="color:var(--chalk-yellow);">過 碘 溴 氯 硝 硫 鋞：</b><br>
+              過氯酸、氫碘酸、氫溴酸、<span style="color:var(--chalk-yellow); font-weight:bold;">氫氯酸(鹽酸)</span>、硝酸、硫酸、鋞離子(水合氫離子)
             </div>
             <div>
               <b style="color:var(--chalk-green);">草 亞硫 硫氫 磷酸：</b><br>
@@ -1121,7 +1137,7 @@
             <span style="color:var(--chalk-green); font-size:0.8rem; font-weight:bold;">(弱酸)</span>
           </div>
           <div style="font-size:0.79rem; color:var(--text-sub); line-height:1.55; margin-bottom:8px; padding-left:4px;">
-            👉 負離子與 H⁺ <b>再結合力強</b>則生成弱酸 (不易再丟失 H⁺)，負離子鹼性強，因為 <span style="color:var(--chalk-yellow); font-weight:bold;">CH₃COO⁻ 搶 H⁺ 意願極高，鹼性強</span>[cite: 1, 8]。
+            👉 負離子與 H⁺ <b>再結合力強</b>則生成弱酸 (不易再丟失 H⁺)，負離子鹼性強，因為 <span style="color:var(--chalk-yellow); font-weight:bold;">CH₃COO⁻ 搶 H⁺ 意願極高，鹼性強</span>。
           </div>
 
           <!-- 式 ②：Cl- 鹼性特弱 (再結合 弱 在箭頭上方；解離 在箭頭下方) -->
@@ -1138,12 +1154,12 @@
             <span style="color:var(--chalk-red); font-size:0.8rem; font-weight:bold;">(強酸)</span>
           </div>
           <div style="font-size:0.79rem; color:var(--text-sub); line-height:1.55; padding-left:4px;">
-            👉 負離子與 H⁺ <b>再結合力弱</b>則生成強酸 (易再釋放 H⁺)，因為 <span style="color:var(--chalk-cyan); font-weight:bold;">Cl⁻ 搶 H⁺ 意願極低，鹼性特弱</span>[cite: 1, 8]。
+            👉 負離子與 H⁺ <b>再結合力弱</b>則生成強酸 (易再釋放 H⁺)，因為 <span style="color:var(--chalk-cyan); font-weight:bold;">Cl⁻ 搶 H⁺ 意願極低，鹼性特弱</span>。
           </div>
         </div>
 
         <div class="note-pill" style="display:block; text-align:center; background:rgba(0,0,0,0.3); border:1px solid var(--card-border);">
-          💡 萬法歸宗：<b>共軛酸愈強，布洛鹼鹼性愈弱！</b>[cite: 1]
+          💡 萬法歸宗：<b>共軛酸愈強，布洛鹼鹼性愈弱！</b>
         </div>
       </div>
 
@@ -1194,37 +1210,37 @@
               <th style="padding:4px; text-align:center;"><i>K</i><sub>b</sub> (25°C)</th>
             </tr>
             <tr style="border-bottom:1px solid var(--card-border);">
-              <td style="padding:4px;"><b>HClO₄</b> (過)[cite: 1]</td>
+              <td style="padding:4px;"><b>HClO₄</b> (過)</td>
               <td style="padding:4px; text-align:center; color:var(--chalk-red); font-weight:bold;">&gt; 10⁷ (極強)</td>
               <td style="padding:4px;">ClO₄⁻</td>
               <td style="padding:4px; text-align:center; color:var(--chalk-sub);">&lt; 10⁻²¹ (無鹼性)</td>
             </tr>
             <tr style="border-bottom:1px solid var(--card-border);">
-              <td style="padding:4px;"><b>H₂C₂O₄</b> (草)[cite: 1]</td>
+              <td style="padding:4px;"><b>H₂C₂O₄</b> (草)</td>
               <td style="padding:4px; text-align:center;">5.9 × 10⁻²</td>
               <td style="padding:4px;">HC₂O₄⁻</td>
               <td style="padding:4px; text-align:center;">1.7 × 10⁻¹³</td>
             </tr>
             <tr style="border-bottom:1px solid var(--card-border);">
-              <td style="padding:4px;"><b>CH₃COOH</b> (醋)[cite: 1]</td>
+              <td style="padding:4px;"><b>CH₃COOH</b> (醋)</td>
               <td style="padding:4px; text-align:center;">1.8 × 10⁻⁵</td>
               <td style="padding:4px;">CH₃COO⁻</td>
               <td style="padding:4px; text-align:center;">5.6 × 10⁻¹⁰</td>
             </tr>
             <tr style="border-bottom:1px solid var(--card-border);">
-              <td style="padding:4px;"><b>H₂CO₃</b> (碳)[cite: 1]</td>
+              <td style="padding:4px;"><b>H₂CO₃</b> (碳)</td>
               <td style="padding:4px; text-align:center;">4.3 × 10⁻⁷</td>
               <td style="padding:4px;">HCO₃⁻</td>
               <td style="padding:4px; text-align:center;">2.3 × 10⁻⁸</td>
             </tr>
             <tr style="border-bottom:1px solid var(--card-border);">
-              <td style="padding:4px;"><b>NH₄⁺</b> (銨)[cite: 1]</td>
+              <td style="padding:4px;"><b>NH₄⁺</b> (銨)</td>
               <td style="padding:4px; text-align:center;">5.6 × 10⁻¹⁰</td>
               <td style="padding:4px;">NH₃</td>
               <td style="padding:4px; text-align:center;">1.8 × 10⁻⁵</td>
             </tr>
             <tr>
-              <td style="padding:4px;"><b>HCO₃⁻</b> (碳氫)[cite: 1]</td>
+              <td style="padding:4px;"><b>HCO₃⁻</b> (碳氫)</td>
               <td style="padding:4px; text-align:center;">4.7 × 10⁻¹¹</td>
               <td style="padding:4px;">CO₃²⁻</td>
               <td style="padding:4px; text-align:center; color:var(--chalk-green); font-weight:bold;">2.1 × 10⁻⁴ (強共軛鹼)</td>
@@ -1284,7 +1300,7 @@
           <div style="background:var(--section-box-bg); padding:8px; border-radius:6px; border:1px solid var(--card-border);">
             <b style="color:var(--chalk-cyan);">Step 2. 調用酸度序列口訣</b><br>
             <span style="font-size:0.81rem; color:var(--text-sub);">
-              心中默念：「過碘溴氯硝硫氫、草亞硫硫氫磷酸、氟亞硝醋碳氫硫、銨氫氰碳氫硫氫」。[cite: 1]
+              心中默念：「過碘溴氯硝硫鋞、草亞硫硫氫磷酸、氟亞硝醋碳氫硫、銨氫氰碳氫硫氫」。
             </span>
           </div>
           <div style="background:var(--section-box-bg); padding:8px; border-radius:6px; border:1px solid var(--card-border);">
@@ -1502,7 +1518,7 @@
     (function recordPageView() {
       const counterEl = document.getElementById("pageViews");
       const timestamp = new Date().getTime();
-      const pageKey = "y-chinchan-acid-base-strength-seq-v13";
+      const pageKey = "y-chinchan-acid-base-strength-seq-v16";
       const apiUrl = `https://api.counterapi.dev/v1/zhan-chemistry/${pageKey}/up?t=${timestamp}`;
 
       fetch(apiUrl)
