@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>【展氏新解】平衡方向判定與酸度序列</title>
+  <title>【展氏新解】布洛酸鹼理論 (三)：平衡方向判定與酸度序列</title>
   <style>
     :root {
       --bg-board: #142c1f;
@@ -64,7 +64,7 @@
 
     html, body {
       width: 100%;
-      overflow-x: hidden; /* 防止手機左右溢出滑動 */
+      overflow-x: hidden;
     }
 
     body {
@@ -77,7 +77,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-wrap: pretty; /* 防止最後一行只有孤字 */
+      text-wrap: pretty;
     }
 
     body.theme-paper { background-color: #e2e8f0; }
@@ -224,7 +224,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      min-width: 0; /* 防止子項溢出 */
+      min-width: 0;
     }
 
     .col-title {
@@ -311,6 +311,57 @@
     }
     .chem-eq-hero::-webkit-scrollbar { display: none; }
 
+    /* 專屬：雙向可逆箭頭上下標註之置中放大反應式容器 */
+    .annotated-eq-card {
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px dashed var(--card-border);
+      border-radius: 6px;
+      padding: 8px 6px;
+      margin: 6px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Noto Sans TC", monospace;
+    }
+    .annotated-eq-card::-webkit-scrollbar { display: none; }
+
+    .annotated-arrow-box {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      min-width: 68px;
+      user-select: none;
+    }
+
+    .arrow-anno-top {
+      font-size: 0.72rem;
+      color: var(--chalk-yellow);
+      font-weight: 800;
+      line-height: 1.1;
+      height: 14px;
+    }
+
+    .arrow-anno-sym {
+      font-size: 1.15rem;
+      line-height: 1;
+      color: var(--chalk-green);
+      font-weight: 900;
+    }
+
+    .arrow-anno-bottom {
+      font-size: 0.72rem;
+      color: var(--chalk-cyan);
+      font-weight: 800;
+      line-height: 1.1;
+      height: 14px;
+    }
+
     /* 正逆反應角色對照表格 */
     .role-table {
       width: 100%;
@@ -366,27 +417,41 @@
       font-size: 0.82rem;
     }
 
-    /* 防少少字不成列：強弱回顧專用緊湊卡片 */
-    .review-flow-box {
+    /* 嚴格對齊專用：Grid 結構雙欄卡片 */
+    .review-grid-box {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       margin-top: 6px;
     }
-    .review-item-card {
+    .review-card-aligned {
       background: rgba(0, 0, 0, 0.22);
       border: 1px solid var(--card-border);
       border-radius: 6px;
-      padding: 6px 8px;
-      font-size: 0.8rem;
-      line-height: 1.5;
-    }
-    .review-item-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      padding: 7px 9px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 5px;
+      column-gap: 8px;
       align-items: center;
-      gap: 4px;
+      font-size: 0.81rem;
+    }
+    .review-card-aligned .card-title {
+      font-weight: 800;
+      color: var(--chalk-yellow);
+    }
+    .review-card-aligned .card-acid {
+      text-align: right;
+      white-space: nowrap;
+    }
+    .review-card-aligned .card-base {
+      white-space: nowrap;
+    }
+    .review-card-aligned .card-direction {
+      text-align: right;
+      color: var(--chalk-green);
+      font-weight: 800;
+      white-space: nowrap;
     }
 
     .note-pill {
@@ -849,7 +914,7 @@
           </div>
         </div>
 
-        <!-- 核心思維轉變提醒框：阿瑞尼斯 vs 布洛理論（排版防孤字優化） -->
+        <!-- 核心思維轉變提醒框：阿瑞尼斯 vs 布洛理論 -->
         <div class="section-box" style="border-left-color: var(--chalk-red); background: rgba(248, 113, 113, 0.12); padding:8px 9px;">
           <div style="font-weight:900; color:var(--chalk-red); font-size:0.86rem; margin-bottom:3px;">
             ⚠️ 展氏警惕：切勿陷入舊思維！
@@ -880,31 +945,27 @@
           </svg>
         </div>
 
-        <!-- 兩範例相對強弱回顧（改用並排卡片，徹底消除孤字折行） -->
+        <!-- 兩範例相對強弱回顧（CSS Grid 絕對雙欄對齊） -->
         <div class="reaction-box">
           <div class="sub-head" style="color:var(--chalk-cyan); margin-bottom:4px;">兩範例相對強弱回顧：</div>
-          <div class="review-flow-box">
-            <div class="review-item-card">
-              <div class="review-item-row">
-                <b>【範例 1】</b>
-                <span>酸性：<span class="cloze">NH₄⁺ &gt; H₂O</span></span>
-                <span>鹼性：<span class="cloze">OH⁻ &gt; NH₃</span></span>
-              </div>
-              <div style="margin-top:2px; color:var(--chalk-green); font-weight:bold;">
-                👉 平衡向 <span class="cloze" style="font-size:0.92rem;">右</span> 移動
-              </div>
+          <div class="review-grid-box">
+            
+            <!-- 範例 1 對齊卡片 -->
+            <div class="review-card-aligned">
+              <div class="card-title">【範例 1】</div>
+              <div class="card-acid">酸性：<span class="cloze">NH₄⁺ &gt; H₂O</span></div>
+              <div class="card-base">鹼性：<span class="cloze">OH⁻ &gt; NH₃</span></div>
+              <div class="card-direction">👉 平衡向 <span class="cloze" style="font-size:0.92rem;">右</span> 移動</div>
             </div>
 
-            <div class="review-item-card">
-              <div class="review-item-row">
-                <b>【範例 2】</b>
-                <span>酸性：<span class="cloze">HCO₃⁻ &lt; NH₄⁺</span></span>
-                <span>鹼性：<span class="cloze">NH₃ &lt; CO₃²⁻</span></span>
-              </div>
-              <div style="margin-top:2px; color:var(--chalk-green); font-weight:bold;">
-                👉 平衡向 <span class="cloze" style="font-size:0.92rem;">左</span> 移動
-              </div>
+            <!-- 範例 2 對齊卡片 -->
+            <div class="review-card-aligned">
+              <div class="card-title">【範例 2】</div>
+              <div class="card-acid">酸性：<span class="cloze">HCO₃⁻ &lt; NH₄⁺</span></div>
+              <div class="card-base">鹼性：<span class="cloze">NH₃ &lt; CO₃²⁻</span></div>
+              <div class="card-direction">👉 平衡向 <span class="cloze" style="font-size:0.92rem;">左</span> 移動</div>
             </div>
+
           </div>
         </div>
 
@@ -1039,11 +1100,43 @@
           </div>
         </div>
 
+        <!-- 4. 深層化學原理：放大置中可逆符號上下精確標註 -->
         <div class="reaction-box" style="border-left: 3px solid var(--chalk-cyan);">
-          <div class="sub-head" style="color:var(--chalk-cyan); margin-bottom:2px;">深層化學原理（長相與結合力）：</div>
-          <div style="font-size:0.81rem; line-height:1.5;">
-            • <span style="color:var(--chalk-yellow);">CH₃COO⁻ ＋ H⁺ ⇋ CH₃COOH</span>（強結合生成弱酸，鹼性強）<br>
-            • <span style="color:var(--chalk-cyan);">Cl⁻ ＋ H⁺ ⇋ HCl</span>（不結合生成強酸，Cl⁻ 搶 H⁺ 意願極低，鹼性特弱）
+          <div class="sub-head" style="color:var(--chalk-cyan); margin-bottom:4px;">深層化學原理（長相與結合力）：</div>
+          
+          <!-- 式 ①：CH3COO- 鹼性強 (再結合 強 在下，解離 在下) -->
+          <div class="annotated-eq-card">
+            <span style="color:var(--chalk-yellow); font-weight:bold;">CH₃COO⁻ ＋ H⁺</span>
+            
+            <div class="annotated-arrow-box">
+              <span class="arrow-anno-top"></span>
+              <span class="arrow-anno-sym">⇌</span>
+              <span class="arrow-anno-bottom">再結合 強</span>
+              <span style="font-size:0.68rem; color:#94a3b8; font-weight:700;">(解離)</span>
+            </div>
+
+            <span style="color:var(--chalk-yellow); font-weight:bold;">CH₃COOH</span>
+            <span style="color:var(--chalk-green); font-size:0.8rem; font-weight:bold;">(弱酸)</span>
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-sub); text-align:center; margin-bottom:6px;">
+            👉 負離子與 H⁺ 再結合力強生成弱酸，<b>鹼性強</b>
+          </div>
+
+          <!-- 式 ②：Cl- 鹼性特弱 (再結合 弱 在上，解離 在下) -->
+          <div class="annotated-eq-card">
+            <span style="color:var(--chalk-cyan); font-weight:bold;">Cl⁻ ＋ H⁺</span>
+            
+            <div class="annotated-arrow-box">
+              <span class="arrow-anno-top">再結合 弱</span>
+              <span class="arrow-anno-sym">⇌</span>
+              <span class="arrow-anno-bottom">解離</span>
+            </div>
+
+            <span style="color:var(--chalk-cyan); font-weight:bold;">HCl</span>
+            <span style="color:var(--chalk-red); font-size:0.8rem; font-weight:bold;">(強酸)</span>
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-sub); text-align:center;">
+            👉 負離子與 H⁺ 不易結合生成強酸，Cl⁻ 搶 H⁺ 意願極低，<b>鹼性特弱</b>
           </div>
         </div>
 
@@ -1407,7 +1500,7 @@
     (function recordPageView() {
       const counterEl = document.getElementById("pageViews");
       const timestamp = new Date().getTime();
-      const pageKey = "y-chinchan-acid-base-strength-seq-v10";
+      const pageKey = "y-chinchan-acid-base-strength-seq-v12";
       const apiUrl = `https://api.counterapi.dev/v1/zhan-chemistry/${pageKey}/up?t=${timestamp}`;
 
       fetch(apiUrl)
