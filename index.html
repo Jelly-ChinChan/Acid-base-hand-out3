@@ -326,6 +326,7 @@
       overflow-x: auto;
       scrollbar-width: none;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Noto Sans TC", monospace;
+      font-size: clamp(0.85rem, 2.6vw, 0.96rem);
     }
     .annotated-eq-card::-webkit-scrollbar { display: none; }
 
@@ -345,6 +346,7 @@
       font-weight: 800;
       line-height: 1.1;
       height: 14px;
+      white-space: nowrap;
     }
 
     .arrow-anno-sym {
@@ -360,6 +362,7 @@
       font-weight: 800;
       line-height: 1.1;
       height: 14px;
+      white-space: nowrap;
     }
 
     /* 正逆反應角色對照表格 */
@@ -1104,25 +1107,24 @@
         <div class="reaction-box" style="border-left: 3px solid var(--chalk-cyan);">
           <div class="sub-head" style="color:var(--chalk-cyan); margin-bottom:4px;">深層化學原理（長相與結合力）：</div>
           
-          <!-- 式 ①：CH3COO- 鹼性強 (再結合 強 在下，解離 在下) -->
+          <!-- 式 ①：CH3COO- 鹼性強 (再結合 強 在箭頭上方；解離 在箭頭下方) -->
           <div class="annotated-eq-card">
             <span style="color:var(--chalk-yellow); font-weight:bold;">CH₃COO⁻ ＋ H⁺</span>
             
             <div class="annotated-arrow-box">
-              <span class="arrow-anno-top"></span>
+              <span class="arrow-anno-top">再結合 強</span>
               <span class="arrow-anno-sym">⇌</span>
-              <span class="arrow-anno-bottom">再結合 強</span>
-              <span style="font-size:0.68rem; color:#94a3b8; font-weight:700;">(解離)</span>
+              <span class="arrow-anno-bottom">解離</span>
             </div>
 
             <span style="color:var(--chalk-yellow); font-weight:bold;">CH₃COOH</span>
             <span style="color:var(--chalk-green); font-size:0.8rem; font-weight:bold;">(弱酸)</span>
           </div>
-          <div style="font-size:0.78rem; color:var(--text-sub); text-align:center; margin-bottom:6px;">
-            👉 負離子與 H⁺ 再結合力強生成弱酸，<b>鹼性強</b>
+          <div style="font-size:0.79rem; color:var(--text-sub); line-height:1.55; margin-bottom:8px; padding-left:4px;">
+            👉 負離子與 H⁺ <b>再結合力強</b>則生成弱酸 (不易再丟失 H⁺)，負離子鹼性強，因為 <span style="color:var(--chalk-yellow); font-weight:bold;">CH₃COO⁻ 搶 H⁺ 意願極高，鹼性強</span>[cite: 1, 8]。
           </div>
 
-          <!-- 式 ②：Cl- 鹼性特弱 (再結合 弱 在上，解離 在下) -->
+          <!-- 式 ②：Cl- 鹼性特弱 (再結合 弱 在箭頭上方；解離 在箭頭下方) -->
           <div class="annotated-eq-card">
             <span style="color:var(--chalk-cyan); font-weight:bold;">Cl⁻ ＋ H⁺</span>
             
@@ -1135,13 +1137,13 @@
             <span style="color:var(--chalk-cyan); font-weight:bold;">HCl</span>
             <span style="color:var(--chalk-red); font-size:0.8rem; font-weight:bold;">(強酸)</span>
           </div>
-          <div style="font-size:0.78rem; color:var(--text-sub); text-align:center;">
-            👉 負離子與 H⁺ 不易結合生成強酸，Cl⁻ 搶 H⁺ 意願極低，<b>鹼性特弱</b>
+          <div style="font-size:0.79rem; color:var(--text-sub); line-height:1.55; padding-left:4px;">
+            👉 負離子與 H⁺ <b>再結合力弱</b>則生成強酸 (易再釋放 H⁺)，因為 <span style="color:var(--chalk-cyan); font-weight:bold;">Cl⁻ 搶 H⁺ 意願極低，鹼性特弱</span>[cite: 1, 8]。
           </div>
         </div>
 
         <div class="note-pill" style="display:block; text-align:center; background:rgba(0,0,0,0.3); border:1px solid var(--card-border);">
-          💡 萬法歸宗：<b>共軛酸愈強，布洛鹼鹼性愈弱！</b>
+          💡 萬法歸宗：<b>共軛酸愈強，布洛鹼鹼性愈弱！</b>[cite: 1]
         </div>
       </div>
 
@@ -1192,37 +1194,37 @@
               <th style="padding:4px; text-align:center;"><i>K</i><sub>b</sub> (25°C)</th>
             </tr>
             <tr style="border-bottom:1px solid var(--card-border);">
-              <td style="padding:4px;"><b>HClO₄</b> (過)</td>
+              <td style="padding:4px;"><b>HClO₄</b> (過)[cite: 1]</td>
               <td style="padding:4px; text-align:center; color:var(--chalk-red); font-weight:bold;">&gt; 10⁷ (極強)</td>
               <td style="padding:4px;">ClO₄⁻</td>
               <td style="padding:4px; text-align:center; color:var(--chalk-sub);">&lt; 10⁻²¹ (無鹼性)</td>
             </tr>
             <tr style="border-bottom:1px solid var(--card-border);">
-              <td style="padding:4px;"><b>H₂C₂O₄</b> (草)</td>
+              <td style="padding:4px;"><b>H₂C₂O₄</b> (草)[cite: 1]</td>
               <td style="padding:4px; text-align:center;">5.9 × 10⁻²</td>
               <td style="padding:4px;">HC₂O₄⁻</td>
               <td style="padding:4px; text-align:center;">1.7 × 10⁻¹³</td>
             </tr>
             <tr style="border-bottom:1px solid var(--card-border);">
-              <td style="padding:4px;"><b>CH₃COOH</b> (醋)</td>
+              <td style="padding:4px;"><b>CH₃COOH</b> (醋)[cite: 1]</td>
               <td style="padding:4px; text-align:center;">1.8 × 10⁻⁵</td>
               <td style="padding:4px;">CH₃COO⁻</td>
               <td style="padding:4px; text-align:center;">5.6 × 10⁻¹⁰</td>
             </tr>
             <tr style="border-bottom:1px solid var(--card-border);">
-              <td style="padding:4px;"><b>H₂CO₃</b> (碳)</td>
+              <td style="padding:4px;"><b>H₂CO₃</b> (碳)[cite: 1]</td>
               <td style="padding:4px; text-align:center;">4.3 × 10⁻⁷</td>
               <td style="padding:4px;">HCO₃⁻</td>
               <td style="padding:4px; text-align:center;">2.3 × 10⁻⁸</td>
             </tr>
             <tr style="border-bottom:1px solid var(--card-border);">
-              <td style="padding:4px;"><b>NH₄⁺</b> (銨)</td>
+              <td style="padding:4px;"><b>NH₄⁺</b> (銨)[cite: 1]</td>
               <td style="padding:4px; text-align:center;">5.6 × 10⁻¹⁰</td>
               <td style="padding:4px;">NH₃</td>
               <td style="padding:4px; text-align:center;">1.8 × 10⁻⁵</td>
             </tr>
             <tr>
-              <td style="padding:4px;"><b>HCO₃⁻</b> (碳氫)</td>
+              <td style="padding:4px;"><b>HCO₃⁻</b> (碳氫)[cite: 1]</td>
               <td style="padding:4px; text-align:center;">4.7 × 10⁻¹¹</td>
               <td style="padding:4px;">CO₃²⁻</td>
               <td style="padding:4px; text-align:center; color:var(--chalk-green); font-weight:bold;">2.1 × 10⁻⁴ (強共軛鹼)</td>
@@ -1282,7 +1284,7 @@
           <div style="background:var(--section-box-bg); padding:8px; border-radius:6px; border:1px solid var(--card-border);">
             <b style="color:var(--chalk-cyan);">Step 2. 調用酸度序列口訣</b><br>
             <span style="font-size:0.81rem; color:var(--text-sub);">
-              心中默念：「過碘溴氯硝硫氫、草亞硫硫氫磷酸、氟亞硝醋碳氫硫、銨氫氰碳氫硫氫」。
+              心中默念：「過碘溴氯硝硫氫、草亞硫硫氫磷酸、氟亞硝醋碳氫硫、銨氫氰碳氫硫氫」。[cite: 1]
             </span>
           </div>
           <div style="background:var(--section-box-bg); padding:8px; border-radius:6px; border:1px solid var(--card-border);">
@@ -1500,7 +1502,7 @@
     (function recordPageView() {
       const counterEl = document.getElementById("pageViews");
       const timestamp = new Date().getTime();
-      const pageKey = "y-chinchan-acid-base-strength-seq-v12";
+      const pageKey = "y-chinchan-acid-base-strength-seq-v13";
       const apiUrl = `https://api.counterapi.dev/v1/zhan-chemistry/${pageKey}/up?t=${timestamp}`;
 
       fetch(apiUrl)
