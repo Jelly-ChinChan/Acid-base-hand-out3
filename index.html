@@ -730,7 +730,7 @@
         </div>
       </div>
 
-      <!-- 第 3 欄：布洛酸酸性序列與經典口訣 -->
+      <!-- 第 3 欄：布洛酸酸性序列與經典口訣（含名稱對照補充） -->
       <div class="col-card">
         <div class="col-title">
           <span>三、布洛酸酸性序列</span>
@@ -780,6 +780,31 @@
 
         <div class="note-pill" style="display:block; text-align:center;">
           🎯 只要背熟酸度序列，所有平衡方向迎刃而解！
+        </div>
+
+        <!-- 口訣與中文名稱對照補充說明 -->
+        <div class="section-box" style="border-left-color: var(--chalk-cyan); background: rgba(0,0,0,0.28); margin-top:4px; font-size:0.82rem; padding:8px 10px;">
+          <div style="font-weight:800; color:var(--chalk-cyan); margin-bottom:4px; font-size:0.86rem;">
+            📖 口訣與中文名稱對照清單：
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px; line-height:1.5;">
+            <div>
+              <b style="color:var(--chalk-yellow);">過 碘 溴 氯 硝 硫 氫：</b><br>
+              過氯酸、氫碘酸、氫溴酸、<span style="color:var(--chalk-green); font-weight:bold;">氫氯酸(鹽酸)</span>、硝酸、硫酸、鋞離子(水合氫離子)
+            </div>
+            <div>
+              <b style="color:var(--chalk-green);">草 亞硫 硫氫 磷酸：</b><br>
+              草酸、亞硫酸、硫酸氫根、磷酸
+            </div>
+            <div>
+              <b style="color:var(--chalk-cyan);">氟 亞硝 醋 碳 氫硫：</b><br>
+              氫氟酸、亞硝酸、醋酸、碳酸、氫硫酸
+            </div>
+            <div>
+              <b style="color:var(--chalk-orange);">銨 氫氰 碳氫 硫氫：</b><br>
+              銨根、氫氰酸、碳酸氫根、硫氫根
+            </div>
+          </div>
         </div>
       </div>
 
@@ -986,7 +1011,7 @@
             </span>
           </div>
           <div style="background:var(--section-box-bg); padding:10px; border-radius:6px; border:1px solid var(--card-border);">
-            <b style="color:var(--chalk-green);">Step 4. 平衡朝相對弱方移動</b><br>
+            <b style="color:var(--chalk-green);">Step 4. 平平衡朝相對弱方移動</b><br>
             <span style="font-size:0.83rem; color:var(--text-sub);">
               相對強酸在左邊則向右走；相對強酸在右邊則向左走（強趨向生成弱）！
             </span>
@@ -1194,7 +1219,7 @@
     (function recordPageView() {
       const counterEl = document.getElementById("pageViews");
       const timestamp = new Date().getTime();
-      const pageKey = "y-chinchan-acid-base-strength-seq-v5";
+      const pageKey = "y-chinchan-acid-base-strength-seq-v6";
       const apiUrl = `https://api.counterapi.dev/v1/zhan-chemistry/${pageKey}/up?t=${timestamp}`;
 
       fetch(apiUrl)
