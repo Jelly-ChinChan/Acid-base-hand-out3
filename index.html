@@ -998,18 +998,18 @@
         </div>
       </div>
 
-      <!-- 第 3 欄：布洛酸酸性序列與經典口訣 -->
+      <!-- 第 3 欄：布洛酸酸性序列與經典口訣（已將大於符號修正為約等於） -->
       <div class="col-card">
         <div class="col-title">
           <span>三、布洛酸酸性序列</span>
           <span style="font-size:0.75rem; opacity:0.8;">核心必背記憶棒</span>
         </div>
 
-        <!-- 第 1 梯隊：超強酸 (水合氫離子之前) -->
+        <!-- 第 1 梯隊：超強酸 (HNO3 ≈ H2SO4) -->
         <div class="section-box" style="border-left-color: var(--chalk-red);">
           <div class="sub-head" style="color:var(--chalk-red);">第 1 梯隊：超強酸 (水合氫離子之前)</div>
           <div class="chem-eq-row" style="color:var(--chalk-yellow); font-size:0.8rem;">
-            HClO₄ &gt; HI &gt; HBr &gt; HCl &gt; HNO₃ &gt; H₂SO₄ &gt; H₃O⁺
+            HClO₄ &gt; HI &gt; HBr &gt; HCl &gt; HNO₃ ≈ H₂SO₄ &gt; H₃O⁺
           </div>
           <div class="mnemonic-box">
             <span style="font-size:0.75rem; opacity:0.8;">口訣記憶法：</span>
@@ -1035,11 +1035,11 @@
           </div>
         </div>
 
-        <!-- 第 3 梯隊：極弱酸與酸式根 (紫色) -->
+        <!-- 第 3 梯隊：極弱酸與酸式根 (NH4+ ≈ HCN) -->
         <div class="section-box" style="border-left-color: var(--ext-title);">
           <div class="sub-head" style="color:var(--ext-title);">第 3 梯隊：極弱酸與酸式根</div>
           <div class="chem-eq-row" style="color:var(--chalk-orange); font-size:0.8rem;">
-            NH₄⁺ &gt; HCN ≫ HCO₃⁻ &gt; HS⁻
+            NH₄⁺ ≈ HCN ≫ HCO₃⁻ &gt; HS⁻
           </div>
           <div class="mnemonic-box">
             <span class="mnemonic-text"><span class="cloze">銨 氫氰 碳氫 硫氫</span></span>
@@ -1518,7 +1518,7 @@
     (function recordPageView() {
       const counterEl = document.getElementById("pageViews");
       const timestamp = new Date().getTime();
-      const pageKey = "y-chinchan-acid-base-strength-seq-v17";
+      const pageKey = "y-chinchan-acid-base-strength-seq-v18";
       const apiUrl = `https://api.counterapi.dev/v1/zhan-chemistry/${pageKey}/up?t=${timestamp}`;
 
       fetch(apiUrl)
