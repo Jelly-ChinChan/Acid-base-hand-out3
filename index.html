@@ -89,9 +89,9 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       margin-bottom: 12px;
-      padding: 10px 14px;
+      padding: 10px 16px;
       background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(8px);
       border-radius: 10px;
@@ -104,6 +104,12 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
+    .toolbar-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .brand-tag {
       font-weight: 900;
       letter-spacing: 0.5px;
@@ -112,16 +118,45 @@
       padding: 3px 8px;
       border-radius: 5px;
       font-size: 0.85rem;
-      margin-right: 6px;
       white-space: nowrap;
       box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
 
-    .btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .toolbar-title {
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* 手機直向寬度下按鈕呈現 2x2 對齊排版 */
+    @media (max-width: 680px) {
+      .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .toolbar-title-wrap {
+        margin-bottom: 4px;
+      }
+      .btn-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        width: 100%;
+      }
+      .btn {
+        justify-content: center;
+        width: 100%;
+      }
+    }
 
     .btn {
-      padding: 6px 11px;
-      font-size: 0.82rem;
+      padding: 7px 14px;
+      font-size: 0.86rem;
       border: 1px solid var(--card-border);
       background: var(--card-bg);
       color: var(--text-main);
@@ -131,7 +166,7 @@
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       text-decoration: none;
       white-space: nowrap;
     }
@@ -784,17 +819,17 @@
 </head>
 <body>
 
-  <!-- 控制列 -->
+  <!-- 控制列（格式與文字完全對齊上傳截圖） -->
   <div class="toolbar">
-    <div style="display:flex; align-items:center; flex-wrap:wrap; gap:4px;">
+    <div class="toolbar-title-wrap">
       <span class="brand-tag">展氏新解</span>
-      <span style="font-weight:700; font-size:0.88rem;">布洛酸鹼理論：布洛酸酸度序列</span>
+      <span class="toolbar-title">布洛酸鹼理論：布洛酸酸度序列</span>
     </div>
     <div class="btn-group">
-      <button class="btn btn-primary" onclick="openQuiz()">📝 隨堂測驗</button>
-      <button class="btn" onclick="toggleTheme()">🎨 黑板/紙本</button>
-      <button class="btn" onclick="toggleCloze()">✏️ 挖空複習</button>
-      <button class="btn" onclick="window.print()">🖨️ 列印 A4</button>
+      <button class="btn btn-primary" onclick="openQuiz()">📝 進入隨堂測驗</button>
+      <button class="btn" onclick="toggleTheme()">🎨 切換黑板/紙本模式</button>
+      <button class="btn" onclick="toggleCloze()">✏️ 課堂挖空複習</button>
+      <button class="btn" onclick="window.print()">🖨️ 列印 A4 講義</button>
     </div>
   </div>
 
@@ -998,7 +1033,7 @@
         </div>
       </div>
 
-      <!-- 第 3 欄：布洛酸酸性序列與經典口訣（已將大於符號修正為約等於） -->
+      <!-- 第 3 欄：布洛酸酸性序列與經典口訣 -->
       <div class="col-card">
         <div class="col-title">
           <span>三、布洛酸酸性序列</span>
@@ -1518,7 +1553,7 @@
     (function recordPageView() {
       const counterEl = document.getElementById("pageViews");
       const timestamp = new Date().getTime();
-      const pageKey = "y-chinchan-acid-base-strength-seq-v18";
+      const pageKey = "y-chinchan-acid-base-strength-seq-v19";
       const apiUrl = `https://api.counterapi.dev/v1/zhan-chemistry/${pageKey}/up?t=${timestamp}`;
 
       fetch(apiUrl)
